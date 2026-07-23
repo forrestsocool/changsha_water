@@ -1,0 +1,114 @@
+{
+  "title": "长沙水费",
+  "config": {
+    "step": {
+      "user": {
+        "title": "添加长沙水费",
+        "description": "填写水表号、登录用户 ID 和抓包得到的 x-tif-token。三个字段都属于隐私数据，不会自动填充。",
+        "data": {
+          "meter_number": "水表号",
+          "user_id": "用户 ID",
+          "token": "Token"
+        }
+      },
+      "reauth_confirm": {
+        "title": "更新长沙水费 Token",
+        "description": "余额查询仍在运行，但明细 Token 已失效或无权访问。请重新抓包并填写用户 ID 和新 x-tif-token；旧值不会显示。",
+        "data": {
+          "user_id": "用户 ID",
+          "token": "新 Token"
+        }
+      },
+      "reconfigure": {
+        "title": "重新配置长沙水费",
+        "description": "为保护隐私，旧值不会显示。请重新填写水表号、用户 ID 和 Token。",
+        "data": {
+          "meter_number": "水表号",
+          "user_id": "用户 ID",
+          "token": "Token"
+        }
+      }
+    },
+    "error": {
+      "invalid_input": "请填写水表号、纯数字用户 ID 和非空 Token。",
+      "invalid_auth": "Token 已失效或没有明细接口权限，请重新抓包。",
+      "meter_not_found": "该用户 ID 下没有找到这个水表号。",
+      "cannot_connect": "无法验证水务接口，请稍后重试。"
+    },
+    "abort": {
+      "already_configured": "该水表已配置。",
+      "reauth_successful": "Token 已更新。",
+      "reconfigure_successful": "配置已更新。"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "长沙水费更新设置",
+        "description": "余额接口不需要 Token，可高频查询；明细接口需要 Token，建议低频查询。",
+        "data": {
+          "balance_interval": "余额查询间隔（分钟）",
+          "details_interval": "明细查询间隔（分钟）",
+          "retention_days": "本地日记录保留天数"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "balance": {
+        "name": "余额"
+      },
+      "estimated_total_water": {
+        "name": "推算总用水量"
+      },
+      "owed_amount": {
+        "name": "欠费"
+      },
+      "penalty": {
+        "name": "滞纳金"
+      },
+      "daily_water": {
+        "name": "今日用水量"
+      },
+      "daily_cost": {
+        "name": "今日水费"
+      },
+      "recharge_today": {
+        "name": "今日充值下限"
+      },
+      "unit_price": {
+        "name": "推算水价"
+      },
+      "authoritative_total_water": {
+        "name": "接口总用水量"
+      },
+      "last_bill_water": {
+        "name": "最近账单用水量"
+      },
+      "last_bill_amount": {
+        "name": "最近账单金额"
+      },
+      "total_water_amount": {
+        "name": "累计水费"
+      },
+      "previous_water_quantity": {
+        "name": "上期水量"
+      }
+    },
+    "binary_sensor": {
+      "token_problem": {
+        "name": "Token 异常"
+      },
+      "payment_allowed": {
+        "name": "允许缴费"
+      }
+    }
+  },
+  "issues": {
+    "token_expired": {
+      "title": "长沙水费 Token 需要更新",
+      "description": "{entry_title} 的明细 Token 已失效或没有接口权限。余额查询和日用量推算仍会继续；请重新抓包并通过重新认证流程填写用户 ID 和新 Token。"
+    }
+  }
+}

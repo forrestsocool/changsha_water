@@ -1,0 +1,17 @@
+{
+  "domain": "changsha_water",
+  "name": "长沙水费",
+  "codeowners": [
+    "@forrestsocool"
+  ],
+  "config_flow": true,
+  "dependencies": [
+    "persistent_notification"
+  ],
+  "documentation": "https://github.com/forrestsocool/changsha_water",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/forrestsocool/changsha_water/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}

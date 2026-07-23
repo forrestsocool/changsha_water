@@ -1,0 +1,114 @@
+{
+  "title": "Changsha Water",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Add Changsha Water",
+        "description": "Enter the meter number, login user ID, and captured x-tif-token. These private fields are never pre-filled.",
+        "data": {
+          "meter_number": "Meter number",
+          "user_id": "User ID",
+          "token": "Token"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Update Changsha Water token",
+        "description": "Balance polling is still running, but the details token is expired or unauthorized. Enter the user ID and a newly captured x-tif-token.",
+        "data": {
+          "user_id": "User ID",
+          "token": "New token"
+        }
+      },
+      "reconfigure": {
+        "title": "Reconfigure Changsha Water",
+        "description": "Existing private values are not displayed. Re-enter the meter number, user ID, and token.",
+        "data": {
+          "meter_number": "Meter number",
+          "user_id": "User ID",
+          "token": "Token"
+        }
+      }
+    },
+    "error": {
+      "invalid_input": "Enter a meter number, numeric user ID, and non-empty token.",
+      "invalid_auth": "The token is expired or cannot access the details API.",
+      "meter_not_found": "The meter is not linked to this user ID.",
+      "cannot_connect": "Unable to validate the water service right now."
+    },
+    "abort": {
+      "already_configured": "This meter is already configured.",
+      "reauth_successful": "The token was updated.",
+      "reconfigure_successful": "The configuration was updated."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Changsha Water update settings",
+        "description": "The token-free balance endpoint can be polled frequently; the authenticated details endpoint should be polled less often.",
+        "data": {
+          "balance_interval": "Balance polling interval (minutes)",
+          "details_interval": "Details polling interval (minutes)",
+          "retention_days": "Local daily record retention (days)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "balance": {
+        "name": "Balance"
+      },
+      "estimated_total_water": {
+        "name": "Estimated total water"
+      },
+      "owed_amount": {
+        "name": "Amount owed"
+      },
+      "penalty": {
+        "name": "Penalty"
+      },
+      "daily_water": {
+        "name": "Water today"
+      },
+      "daily_cost": {
+        "name": "Cost today"
+      },
+      "recharge_today": {
+        "name": "Recharge minimum today"
+      },
+      "unit_price": {
+        "name": "Estimated unit price"
+      },
+      "authoritative_total_water": {
+        "name": "API total water"
+      },
+      "last_bill_water": {
+        "name": "Latest billed water"
+      },
+      "last_bill_amount": {
+        "name": "Latest bill amount"
+      },
+      "total_water_amount": {
+        "name": "Total water cost"
+      },
+      "previous_water_quantity": {
+        "name": "Previous water quantity"
+      }
+    },
+    "binary_sensor": {
+      "token_problem": {
+        "name": "Token problem"
+      },
+      "payment_allowed": {
+        "name": "Payment allowed"
+      }
+    }
+  },
+  "issues": {
+    "token_expired": {
+      "title": "Changsha Water token needs updating",
+      "description": "The details token for {entry_title} is expired or unauthorized. Balance tracking and daily estimates continue. Capture a new token and complete reauthentication."
+    }
+  }
+}
